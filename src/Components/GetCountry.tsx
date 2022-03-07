@@ -11,7 +11,6 @@ const GetCountry = () => {
   const { loading, error, data } = useQuery(LOAD_COUNTRY, {
     variables: { code },
   });
-  console.log(data);
 
   useEffect(() => {
     if (data) {
