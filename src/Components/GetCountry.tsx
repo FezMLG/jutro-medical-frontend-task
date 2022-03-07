@@ -2,17 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LOAD_COUNTRY } from "../GraphQL/Queries";
-
-interface Country {
-  code: string;
-  name: string;
-  emoji: string;
-  languages: [
-    {
-      name: string;
-    }
-  ];
-}
+import { Country } from "../Interfaces/Country";
 
 const GetCountry = () => {
   const [country, setCountry] = useState<Country>();

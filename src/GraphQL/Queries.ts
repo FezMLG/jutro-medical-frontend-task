@@ -21,3 +21,12 @@ export const LOAD_COUNTRY = gql`
     }
   }
 `;
+
+export const LOAD_CONTINENTS = gql`
+  query {
+    continents {
+      code
+      name
+    }
+  }
+`;
