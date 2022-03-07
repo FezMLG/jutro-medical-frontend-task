@@ -19,6 +19,7 @@ import AsyncSelect from "react-select/async";
 import { LOAD_CONTINENTS } from "./GraphQL/Queries";
 import SearchByContinent from "./Components/SearchByContinent";
 import { Continent } from "./Interfaces/Continent";
+import { TextField } from "@mui/material";
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -51,18 +52,22 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <h1>Welcome to Countries!</h1>
-      <SearchByContinent onContinentChange={setContinent} />
-      <input
-        type="text"
-        className="input"
-        onChange={handleSearch}
-        placeholder="Search country..."
-      />
       <Routes>
         <Route
           path="/"
-          element={<GetCountries continent={continent} input={inputText} />}
+          element={
+            <>
+              <h1>Welcome to Countries!</h1>
+              <SearchByContinent onContinentChange={setContinent} />
+              <TextField
+                onChange={handleSearch}
+                variant="standard"
+                fullWidth
+                label="Search"
+              />
+              <GetCountries continent={continent} input={inputText} />
+            </>
+          }
         />
         <Route path="/:code" element={<GetCountry />} />
       </Routes>
