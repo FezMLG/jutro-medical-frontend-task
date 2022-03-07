@@ -35,7 +35,7 @@ const GetCountry = () => {
         <p>Loading...</p>
       </div>
     );
-  if (error) return `Error! ${error}`;
+  if (error) console.error(`[GraphQL error]: Message: ${error}`);
   return (
     <>
       <Link to="/">Go back</Link>

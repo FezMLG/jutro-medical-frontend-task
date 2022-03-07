@@ -14,6 +14,7 @@ import {
 import { onError } from "@apollo/client/link/error";
 import GetCountries from "./Components/GetCountries";
 import GetCountry from "./Components/GetCountry";
+import Select from "react-select";
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -30,6 +31,12 @@ import GetCountry from "./Components/GetCountry";
 //   new HttpLink({ uri: "https://countries.trevorblades.com/" }),
 // ]);
 
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
+
 const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/",
   cache: new InMemoryCache(),
@@ -39,6 +46,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <h1>Welcome to Countries!</h1>
+      <Select options={options} />
       <Routes>
         <Route path="/" element={<GetCountries />} />
         <Route path="/:code" element={<GetCountry />} />
