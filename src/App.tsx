@@ -51,27 +51,41 @@ function App() {
   };
 
   return (
-    <ApolloProvider client={client}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <h1>Welcome to Countries!</h1>
-              <SearchByContinent onContinentChange={setContinent} />
-              <TextField
-                onChange={handleSearch}
-                variant="standard"
-                fullWidth
-                label="Search"
-              />
-              <GetCountries continent={continent} input={inputText} />
-            </>
-          }
-        />
-        <Route path="/:code" element={<GetCountry />} />
-      </Routes>
-    </ApolloProvider>
+    <div className="max-w-xl m-auto">
+      <h1 className="text-3xl font-bold underline">Countries</h1>
+      <ApolloProvider client={client}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="bg-slate-300 px-5 py-5 rounded-lg	shadow-lg my-5">
+                  <h2 className="text-xl font-semibold mb-3">Search by</h2>
+                  <div className="w-11/12 flex flex-col gap-3 m-auto">
+                    <div>
+                      <label>Continent</label>
+                      <SearchByContinent onContinentChange={setContinent} />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="countrySerach">Country name</label>
+                      <input
+                        type="text"
+                        onChange={handleSearch}
+                        placeholder="Search..."
+                        id="countrySerach"
+                        className="px-3 py-2 rounded-lg	shadow-md"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <GetCountries continent={continent} input={inputText} />
+              </>
+            }
+          />
+          <Route path="/:code" element={<GetCountry />} />
+        </Routes>
+      </ApolloProvider>
+    </div>
   );
 }
 

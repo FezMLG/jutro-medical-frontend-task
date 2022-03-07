@@ -38,13 +38,16 @@ const GetCountries: FunctionComponent<{ continent: any; input: any }> = ({
   }, [data]);
 
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       {" "}
       {filteredData.map((val: any, key: any) => {
         return (
-          <a href={`/${val.code}`} key={key}>
-            <p>{val.name}</p>
-            <p>{val.code}</p>
+          <a
+            href={`/${val.code}`}
+            key={key}
+            className="text-xl font-semibold pl-2.5 hover:underline text-blue-800"
+          >
+            {val.name} ({val.code})
           </a>
         );
       })}
