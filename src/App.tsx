@@ -10,6 +10,7 @@ import {
   gql,
   from,
   HttpLink,
+  useLazyQuery,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import GetCountries from "./Components/GetCountries";
@@ -17,6 +18,7 @@ import GetCountry from "./Components/GetCountry";
 import AsyncSelect from "react-select/async";
 import { LOAD_CONTINENTS } from "./GraphQL/Queries";
 import SearchByContinent from "./Components/SearchByContinent";
+import { Continent } from "./Interfaces/Continent";
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -39,12 +41,29 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [continent, setContinent] = useState("");
+  const [inputText, setInputText] = useState("");
+
+  const handleSearch = (e: any) => {
+    var lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
+
   return (
     <ApolloProvider client={client}>
       <h1>Welcome to Countries!</h1>
-      <SearchByContinent />
+      <SearchByContinent onContinentChange={setContinent} />
+      <input
+        type="text"
+        className="input"
+        onChange={handleSearch}
+        placeholder="Search country..."
+      />
       <Routes>
-        <Route path="/" element={<GetCountries />} />
+        <Route
+          path="/"
+          element={<GetCountries continent={continent} input={inputText} />}
+        />
         <Route path="/:code" element={<GetCountry />} />
       </Routes>
     </ApolloProvider>

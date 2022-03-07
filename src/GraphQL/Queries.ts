@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const LOAD_COUNTRIES = gql`
-  query {
-    countries {
-      code
+  query ($filter: CountryFilterInput) {
+    countries(filter: $filter) {
       name
+      code
     }
   }
 `;
