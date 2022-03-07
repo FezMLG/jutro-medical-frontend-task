@@ -8,3 +8,16 @@ export const LOAD_COUNTRIES = gql`
     }
   }
 `;
+
+export const LOAD_COUNTRY = gql`
+  query country($code: ID!) {
+    country(code: $code) {
+      code
+      name
+      emoji
+      languages {
+        name
+      }
+    }
+  }
+`;

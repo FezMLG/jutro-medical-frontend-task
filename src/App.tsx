@@ -41,7 +41,7 @@ function App() {
       <h1>Welcome to Countries!</h1>
       <Routes>
         <Route path="/" element={<GetCountries />} />
-        <Route path="/:countryId" element={<GetCountry />} />
+        <Route path="/:code" element={<GetCountry />} />
       </Routes>
     </ApolloProvider>
   );
