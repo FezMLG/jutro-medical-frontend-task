@@ -1,31 +1,31 @@
-import { useQuery } from "@apollo/client";
-import { LOAD_COUNTRIES } from "../GraphQL/Queries";
-import { FunctionComponent, useEffect, useState } from "react";
-import { Countries } from "../Interfaces/Countries";
+import { useQuery } from '@apollo/client';
+import { LOAD_COUNTRIES } from '../GraphQL/Queries';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { Countries } from '../Interfaces/Countries';
 
 const GetCountries: FunctionComponent<{ continent: string; input: string }> = ({
   continent,
-  input,
+  input
 }) => {
   const [countries, setCountries] = useState<Countries[]>([]);
 
   let filter = {};
-  if (continent != "") {
+  if (continent != '') {
     filter = {
       filter: {
         continent: {
-          eq: continent,
-        },
-      },
+          eq: continent
+        }
+      }
     };
   }
 
   const { error, loading, data } = useQuery(LOAD_COUNTRIES, {
-    variables: filter,
+    variables: filter
   });
 
   const filteredData = countries.filter((el: any) => {
-    if (input === "") {
+    if (input === '') {
       return el;
     } else {
       return el.name.toLowerCase().includes(input);
@@ -47,15 +47,15 @@ const GetCountries: FunctionComponent<{ continent: string; input: string }> = ({
   if (error) console.error(`[GraphQL error]: Message: ${error}`);
 
   return (
-    <div className="flex flex-col gap-3">
-      {" "}
+    <div className="flex flex-col gap-3" data-cy="countriesList">
+      {' '}
       {filteredData.map((val: any, key: any) => {
         return (
           <a
             href={`/${val.code}`}
             key={key}
             className="text-xl font-semibold pl-2.5 hover:underline text-blue-800"
-          >
+            data-cy="country">
             {val.name} ({val.code})
           </a>
         );

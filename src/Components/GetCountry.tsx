@@ -35,19 +35,25 @@ const GetCountry = () => {
           <tbody>
             <tr>
               <td className={head}>Code: </td>
-              <td className={cell}>{country?.code}</td>
+              <td className={cell} data-cy="code">
+                {country?.code}
+              </td>
             </tr>
             <tr>
               <td className={head}>Name: </td>
-              <td className={cell}>{country?.name}</td>
+              <td className={cell} data-cy="name">
+                {country?.name}
+              </td>
             </tr>
             <tr>
               <td className={head}>Emoji: </td>
-              <td className={cell}>{country?.emoji}</td>
+              <td className={cell} data-cy="emoji">
+                {country?.emoji}
+              </td>
             </tr>
             <tr>
               <td className={head}>Languages: </td>
-              <td className={cell}>
+              <td className={cell} data-cy="lang">
                 {country?.languages.map((val: any, key: any) => {
                   return <p key={key}>{val.name}</p>;
                 })}

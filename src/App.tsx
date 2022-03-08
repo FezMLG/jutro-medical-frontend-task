@@ -37,12 +37,12 @@ function App() {
                       <SearchByContinent onContinentChange={setContinent} />
                     </div>
                     <div className="flex flex-col">
-                      <label htmlFor="countrySerach">Country name</label>
+                      <label htmlFor="countrySearch">Country name</label>
                       <input
                         type="text"
                         onChange={handleSearch}
                         placeholder="Search..."
-                        id="countrySerach"
+                        id="countrySearch"
                         className="px-3 py-2 rounded-lg	shadow-md"
                       />
                     </div>
