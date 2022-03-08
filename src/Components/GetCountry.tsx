@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { LOAD_COUNTRY } from "../GraphQL/Queries";
 import { Country } from "../Interfaces/Country";
 

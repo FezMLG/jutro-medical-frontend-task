@@ -1,12 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { FunctionComponent, useEffect, useState } from "react";
 import AsyncSelect from "react-select/async";
-import { SingleValue } from "react-select/dist/declarations/src";
-import { handleInputChange } from "react-select/dist/declarations/src/utils";
 import { LOAD_CONTINENTS } from "../GraphQL/Queries";
 import { Continent } from "../Interfaces/Continent";
 
-const SearchByContinent: FunctionComponent<{ onContinentChange?: any }> = ({
+const SearchByContinent: FunctionComponent<{ onContinentChange: any }> = ({
   onContinentChange,
 }) => {
   const [continents, setContinents] = useState<Continent[]>();
@@ -27,6 +25,8 @@ const SearchByContinent: FunctionComponent<{ onContinentChange?: any }> = ({
   function handleChange(e: any) {
     onContinentChange(e.value);
   }
+
+  if (error) console.error(`[GraphQL error]: Message: ${error}`);
 
   return (
     <AsyncSelect

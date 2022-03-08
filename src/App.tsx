@@ -20,9 +20,6 @@ function App() {
     setInputText(lowerCase);
   };
 
-  // TODO:
-  // sessionStorage
-
   return (
     <div className="max-w-xl m-auto">
       <h1 className="text-3xl font-bold underline">Countries</h1>

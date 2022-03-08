@@ -1,12 +1,13 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { LOAD_COUNTRIES } from "../GraphQL/Queries";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { Countries } from "../Interfaces/Countries";
 
-const GetCountries: FunctionComponent<{ continent: any; input: any }> = ({
+const GetCountries: FunctionComponent<{ continent: string; input: string }> = ({
   continent,
   input,
 }) => {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState<Countries[]>([]);
 
   let filter = {};
   if (continent != "") {
