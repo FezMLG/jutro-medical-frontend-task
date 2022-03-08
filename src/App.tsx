@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import "./App.css";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import GetCountries from "./Components/GetCountries";
-import GetCountry from "./Components/GetCountry";
-import SearchByContinent from "./Components/SearchByContinent";
+import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import GetCountries from './Components/GetCountries';
+import GetCountry from './Components/GetCountry';
+import SearchByContinent from './Components/SearchByContinent';
 
 const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com/",
-  cache: new InMemoryCache(),
+  uri: 'https://countries.trevorblades.com/',
+  cache: new InMemoryCache()
 });
 
 function App() {
-  const [continent, setContinent] = useState("");
-  const [inputText, setInputText] = useState("");
+  const [continent, setContinent] = useState('');
+  const [inputText, setInputText] = useState('');
 
   const handleSearch = (e: any) => {
-    var lowerCase = e.target.value.toLowerCase();
+    const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };
 
@@ -58,8 +58,7 @@ function App() {
               <>
                 <Link
                   to="/"
-                  className="px-2 py-1 my-2 block bg-emerald-900 text-white w-max rounded-lg shadow-md"
-                >
+                  className="px-2 py-1 my-2 block bg-emerald-900 text-white w-max rounded-lg shadow-md">
                   Go back
                 </Link>
                 <GetCountry />

@@ -1,14 +1,14 @@
-import { useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { LOAD_COUNTRY } from "../GraphQL/Queries";
-import { Country } from "../Interfaces/Country";
+import { useQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { LOAD_COUNTRY } from '../GraphQL/Queries';
+import { Country } from '../Interfaces/Country';
 
 const GetCountry = () => {
   const [country, setCountry] = useState<Country>();
-  let { code } = useParams();
+  const { code } = useParams();
   const { loading, error, data } = useQuery(LOAD_COUNTRY, {
-    variables: { code },
+    variables: { code }
   });
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const GetCountry = () => {
     );
   if (error) console.error(`[GraphQL error]: Message: ${error}`);
 
-  const head = "border border-slate-600 bg-slate-300 px-5 py-3";
-  const cell = "border border-slate-700 px-5 py-3";
+  const head = 'border border-slate-600 bg-slate-300 px-5 py-3';
+  const cell = 'border border-slate-700 px-5 py-3';
 
   return (
     <>
