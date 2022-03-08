@@ -7,7 +7,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "test": "cypress run",
+    "test:watch": "cypress open"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
