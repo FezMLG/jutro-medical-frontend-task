@@ -1,40 +1,10 @@
-import { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-  from,
-  HttpLink,
-  useLazyQuery,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import GetCountries from "./Components/GetCountries";
 import GetCountry from "./Components/GetCountry";
-import AsyncSelect from "react-select/async";
-import { LOAD_CONTINENTS } from "./GraphQL/Queries";
 import SearchByContinent from "./Components/SearchByContinent";
-import { Continent } from "./Interfaces/Continent";
-import { TextField } from "@mui/material";
-
-// const errorLink = onError(({ graphQLErrors, networkError }) => {
-//   if (graphQLErrors)
-//     graphQLErrors.map(({ message, locations, path }) =>
-//       console.log(
-//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-//       )
-//     );
-
-//   if (networkError) console.log(`[Network error]: ${networkError}`);
-// });
-// const link = from([
-//   errorLink,
-//   new HttpLink({ uri: "https://countries.trevorblades.com/" }),
-// ]);
 
 const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/",
@@ -49,6 +19,9 @@ function App() {
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };
+
+  // TODO:
+  // sessionStorage
 
   return (
     <div className="max-w-xl m-auto">
@@ -82,7 +55,20 @@ function App() {
               </>
             }
           />
-          <Route path="/:code" element={<GetCountry />} />
+          <Route
+            path="/:code"
+            element={
+              <>
+                <Link
+                  to="/"
+                  className="px-2 py-1 my-2 block bg-emerald-900 text-white w-max rounded-lg shadow-md"
+                >
+                  Go back
+                </Link>
+                <GetCountry />
+              </>
+            }
+          />
         </Routes>
       </ApolloProvider>
     </div>

@@ -6,6 +6,8 @@ const GetCountries: FunctionComponent<{ continent: any; input: any }> = ({
   continent,
   input,
 }) => {
+  const [countries, setCountries] = useState([]);
+
   let filter = {};
   if (continent != "") {
     filter = {
@@ -21,8 +23,6 @@ const GetCountries: FunctionComponent<{ continent: any; input: any }> = ({
     variables: filter,
   });
 
-  const [countries, setCountries] = useState([]);
-
   const filteredData = countries.filter((el: any) => {
     if (input === "") {
       return el;
@@ -36,6 +36,14 @@ const GetCountries: FunctionComponent<{ continent: any; input: any }> = ({
       setCountries(data.countries);
     }
   }, [data]);
+
+  if (loading)
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    );
+  if (error) console.error(`[GraphQL error]: Message: ${error}`);
 
   return (
     <div className="flex flex-col gap-3">

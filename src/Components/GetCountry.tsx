@@ -6,7 +6,6 @@ import { Country } from "../Interfaces/Country";
 
 const GetCountry = () => {
   const [country, setCountry] = useState<Country>();
-
   let { code } = useParams();
   const { loading, error, data } = useQuery(LOAD_COUNTRY, {
     variables: { code },
@@ -25,18 +24,37 @@ const GetCountry = () => {
       </div>
     );
   if (error) console.error(`[GraphQL error]: Message: ${error}`);
+
+  const head = "border border-slate-600 bg-slate-300 px-5 py-3";
+  const cell = "border border-slate-700 px-5 py-3";
+
   return (
     <>
-      <Link to="/">Go back</Link>
-      <div>
-        <p>{country?.code}</p>
-        <p>{country?.name}</p>
-        <p>{country?.emoji}</p>
-        <div>
-          {country?.languages.map((val: any, key: any) => {
-            return <p key={key}>{val.name}</p>;
-          })}
-        </div>
+      <div className="mt-10">
+        <table className="border-collapse border border-slate-500">
+          <tbody>
+            <tr>
+              <td className={head}>Code: </td>
+              <td className={cell}>{country?.code}</td>
+            </tr>
+            <tr>
+              <td className={head}>Name: </td>
+              <td className={cell}>{country?.name}</td>
+            </tr>
+            <tr>
+              <td className={head}>Emoji: </td>
+              <td className={cell}>{country?.emoji}</td>
+            </tr>
+            <tr>
+              <td className={head}>Languages: </td>
+              <td className={cell}>
+                {country?.languages.map((val: any, key: any) => {
+                  return <p key={key}>{val.name}</p>;
+                })}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </>
   );
